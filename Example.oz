@@ -1,8 +1,11 @@
-declare ProjectLib in
-[ProjectLib] = {Link ["ProjectLib.ozf"]}
-
+declare ProjectLib
+Path ="/home/pablo/Documents/fsab1402/fsab1402-project/" in
+%[ProjectLib] = {Link ["/home/pablo/Documents/fsab1402/fsab1402-project/ProjectLib.ozf"]}
+[ProjectLib] = {Link [Path#"ProjectLib.ozf"]}
+{Show ProjectLib}
 local
-   ListOfPersons = {ProjectLib.loadDatabase file "database.txt"}
+%   ListOfPersons = {ProjectLib.loadDatabase file "/home/pablo/Documents/fsab1402/fsab1402-project/database.txt"}
+   ListOfPersons = {ProjectLib.loadDatabase file Path#"database.txt"}
 
    fun {BuildDecisionTree DB}
       notimplemented
