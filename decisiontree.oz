@@ -33,8 +33,8 @@ in
    end
 
 % @pre: takes a question Quest and a database DB as input arguments
-% @post: returns a question with a nomber of true/false
-   fun {Choice Quest DB} % choisis la question ayant un nombre true/false equilibree
+% @post: returns a question with a number of true/false
+   fun {Choice Quest DB}
       ChoiceAux in
       fun {ChoiceAux Question L Acc1 Acc2}
 	 case Question
@@ -79,6 +79,8 @@ in
 	 leaf({Names DB})
       elseif {Length DB}==1 then
 	 leaf({Names DB})
+      elseif DB == nil then
+      leaf(nil)
       else
 	 local
 	    A={Choice L DB}
