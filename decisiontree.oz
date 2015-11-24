@@ -80,7 +80,7 @@ in
       elseif {Length DB}==1 then
 	 leaf({Names DB})
       elseif DB == nil then
-      leaf(nil)
+	 leaf(nil)
       else
 	 local
 	    A={Choice L DB}
