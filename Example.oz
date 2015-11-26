@@ -1,10 +1,8 @@
 declare ProjectLib
-Path ="/home/pablo/Documents/fsab1402/fsab1402-project/" in
-%[ProjectLib] = {Link ["/home/pablo/Documents/fsab1402/fsab1402-project/ProjectLib.ozf"]}
+Path = "/home/pablo/Documents/fsab1402/fsab1402-project/"
+% Path = "Users/marie-marie/Documents/UCL université/Q3(2015)/informatique 2/fsab1402-project/"
 [ProjectLib] = {Link [Path#"ProjectLib.ozf"]}
-{Show ProjectLib}
 local
-%   ListOfPersons = {ProjectLib.loadDatabase file "/home/pablo/Documents/fsab1402/fsab1402-project/database.txt"}
    ListOfPersons = {ProjectLib.loadDatabase file Path#"database.txt"}
 
    fun {BuildDecisionTree DB}
@@ -40,7 +38,7 @@ local
 	 {Browse 'Aucune personne ne correspond a cette description'}
       end
 
-   %% Toujours retourner unit
+      %% Toujours retourner unit
       unit
    end
 

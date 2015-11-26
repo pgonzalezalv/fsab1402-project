@@ -2,11 +2,12 @@
 Marie-Marie van der Beek - XXXX 1300
 Pablo Gonzalez Alvarez - 5243 1300
 */
-declare ProjectLib in
-[ProjectLib] = {Link ["/home/pablo/Documents/fsab1402/fsab1402-project/ProjectLib.ozf"]}
-
+declare ProjectLib
+Path = "/home/pablo/Documents/fsab1402/fsab1402-project/"
+% Path = "Users/marie-marie/Documents/UCL université/Q3(2015)/informatique 2/fsab1402-project/" 
+[ProjectLib] = {Link [Path#"ProjectLib.ozf"]}
 local
-   ListOfPersons = {ProjectLib.loadDatabase file "/home/pablo/Documents/fsab1402/fsab1402-project/database.txt"}
+   ListOfPersons = {ProjectLib.loadDatabase file Path#"database.txt"}
 
 % @pre: takes a database DB as input argument
 % @post:
@@ -124,11 +125,11 @@ local
 	    end
 	 end
       else
-	 {Browse 'Pas donn�'}
+	 {Browse 'Pas donne'}
 	 Result = false
       end
       if Result == false then
-	 {Browse 'Aucune personne ne correspond � cette description'}
+	 {Browse 'Aucune personne ne correspond a cette description'}
       end
 
       %% Toujours retourner unit
