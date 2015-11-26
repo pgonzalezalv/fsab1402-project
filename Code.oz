@@ -7,7 +7,7 @@ Path = "/home/pablo/Documents/fsab1402/fsab1402-project/"
 % Path = "Users/marie-marie/Documents/UCL université/Q3(2015)/informatique 2/fsab1402-project/"
 [ProjectLib] = {Link [Path#"ProjectLib.ozf"]}
 local
-   ListOfPersons = {ProjectLib.loadDatabase file Path#"database.txt"}
+   ListOfPersons = {ProjectLib.loadDatabase file Path#"/Databases/database.txt"}
 
    % @pre: takes a database DB as input argument
    % @post:
