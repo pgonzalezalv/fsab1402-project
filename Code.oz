@@ -108,10 +108,14 @@ local
       case Tree
       of leaf(Ans) then
 	 Result = {ProjectLib.found Ans}
-      [] question(Quest false:F true:T) andthen {ProjectLib.askQuestion Quest} == true then
-	 Result = {GameDriver T}
-      [] question(Quest false:F true:T) andthen {ProjectLib.askQuestion Quest} == false then
-	 Result = {GameDriver F}
+      [] question(Quest false:F true:T) then
+	 Answer = {ProjectLib.askQuestion Quest}
+      in
+	 if Answer == true then
+	    Result = {GameDriver T}
+	 else
+	    Result = {GameDriver F}
+	 end
       end
       if Result == false then
 	 {Browse 'Aucune personne ne correspond a cette description'}
