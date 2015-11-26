@@ -84,7 +84,7 @@ in
 	 if {CountBoolean A.1 DB true} == 0 orelse {CountBoolean A.1 DB false} == 0 then
 	    leaf({Names DB})
 	 else
-	    question(A.1 true:{Add {Remove L A.1} A.2}  false:{Add {Remove L A.1} A.3})
+	    question(A.1 true:{Add {Remove L A.1} A.2}  false:{Add {Remove L A.1} A.3} 'unknown':{Add {Remove L A.1} DB})
 	 end
       end
    end
