@@ -7,18 +7,18 @@ in
 % @pre: takes a question Quest and a database DB as input arguments
 % @post: returns the number of persons in DB that answered true or false to Quest
    fun {Count Quest DB}
-      fun {CountAux Qu L Acc1 Acc2 Acc3 Acc4}
+      fun {CountAux Qu L DBTrue DBFalse}
 	 case L
 	 of nil then
-	    triple(Qu Acc1 Acc2 Acc3 Acc4)
+	    triple(Qu DBTrue DBFalse)
 	 [] H|T andthen H.Qu==true then
-	    {CountAux Qu T H.1|Acc1 Acc2 H|Acc3 Acc4}
+	    {CountAux Qu T H|DBTrue DBFalse}
 	 [] H|T andthen H.Qu==false then
-	    {CountAux Qu T Acc1 H.1|Acc2 Acc3 H|Acc4}
+	    {CountAux Qu T DBTrue H|DBFalse}
 	 end
       end
    in
-      {CountAux Quest DB nil nil nil nil}
+      {CountAux Quest DB nil nil}
    end
 % @pre: takes a question Quest, a database DB, and a boolean Bool as input arguments
 % @post: returns the number of Bool of the Quest in the DB
@@ -34,14 +34,14 @@ in
 % @pre: takes a question Quest and a database DB as input arguments
 % @post: returns a question with a number of true/false
    fun {Choice Quest DB}
-      fun {ChoiceAux Question L Acc1 Acc2}
+      fun {ChoiceAux Question L Quest Acc2}
 	 case Question
 	 of nil then
-	    {Count Acc1 L}
+	    {Count Quest L}
 	 [] H|T andthen {Abs {CountBoolean H L true}-{CountBoolean H L false}} < Acc2 then
 	    {ChoiceAux T L H {Abs {CountBoolean H L true}-{CountBoolean H L false}}}
 	 [] H|T then
-	    {ChoiceAux T L Acc1 Acc2}
+	    {ChoiceAux T L Quest Acc2}
 	 end
       end
    in
@@ -78,12 +78,14 @@ in
 	 leaf({Names DB})
       elseif {Length DB} == 1 then
 	 leaf({Names DB})
-      elseif DB == nil then
-	 leaf(nil)
       else
 	 A = {Choice L DB}
       in
-	 question(A.1 true:{Add {Remove L A.1} A.4}  false:{Add {Remove L A.1} A.5})
+	 if {CountBoolean A.1 DB true} == 0 orelse {CountBoolean A.1 DB false} == 0 then
+	    leaf({Names DB})
+	 else
+	    question(A.1 true:{Add {Remove L A.1} A.2}  false:{Add {Remove L A.1} A.3})
+	 end
       end
    end
    ListeQuestion={Arity DB.1}.2
