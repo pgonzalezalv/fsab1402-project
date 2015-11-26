@@ -1,13 +1,17 @@
-
 declare
 fun {GameDriver Tree}
    Result
 in
-   case Tree of leaf(A) then Result={ProjectLib.found A}
-   []H|T question(A true:T false:F) andthen {ProjectLib.askQuestion A}==true then {GameDriver T}
-   []H|T question(A true:T false:F) andthen {ProjectLib.askQuestion A}==false then {GameDriver F}
+   case Tree
+   of leaf(Ans) then
+Result = {ProjectLib.found Ans}
+   [] question(Quest false:F true:T) andthen {ProjectLib.askQuestion Quest} == true then
+Result = {GameDriver T}
+   [] question(Quest false:F true:T) andthen {ProjectLib.askQuestion Quest} == false then
+Result = {GameDriver F}
    end
-   if Result == false then {Browse ‘Aucune personne ne correspond à cette description’}
+   if Result == false then
+{Browse 'Aucune personne ne correspond a cette description'}
    end
    unit
 end
