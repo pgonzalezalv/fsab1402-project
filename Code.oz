@@ -48,8 +48,8 @@ local
 	    case Question
 	    of nil then
 	       {Count Quest L}
-	    [] H|T andthen {Abs {CountBoolean H L true}-{CountBoolean H L false}} < Acc2 then
-	       {ChoiceAux T L H {Abs {CountBoolean H L true}-{CountBoolean H L false}}}
+	    [] H|T andthen Diff={Abs {CountBoolean H L true}-{CountBoolean H L false}} in Diff < Acc2 then
+	       {ChoiceAux T L H Diff}
 	    [] H|T then
 	       {ChoiceAux T L Quest Acc2}
 	    end
